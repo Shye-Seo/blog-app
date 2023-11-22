@@ -8,22 +8,41 @@ import ProfilePage from 'pages/profile';
 import LoginPage from 'pages/login';
 import SignupPage from 'pages/signup';
 
-export default function Router() {
+interface RouteProps {
+  isAuthenticated: boolean;
+}
+
+export default function Router({ isAuthenticated }: RouteProps) {
+  
   return (
     <>
       <Routes>
         {/* root path 설정 */}
-        <Route path='/' element={<Home />} />
-        <Route path='/posts' element={<PostList />} />
-        <Route path='/posts/:id' element={<PostDetail />} />
-        <Route path='/posts/new' element={<PostNew />} />
-        <Route path='/posts/edit/:id' element={<PostEdit />} />
-        <Route path='/profile' element={<ProfilePage />} />
-        <Route path='/login' element={<LoginPage />} />
-        <Route path='/signup' element={<SignupPage />} />
-        
-        {/* default값 설정 -> Navigate 기능을 통해 메인 페이지로 이동 */}
-        <Route path='*' element={<Navigate replace to='/' />} />
+
+        {isAuthenticated ? (
+          // 사용자 인증이 되었다면 해당 Route
+          <>
+            <Route path='/' element={<Home />} />
+            <Route path='/posts' element={<PostList />} />
+            <Route path='/posts/:id' element={<PostDetail />} />
+            <Route path='/posts/new' element={<PostNew />} />
+            <Route path='/posts/edit/:id' element={<PostEdit />} />
+            <Route path='/profile' element={<ProfilePage />} />
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/signup' element={<SignupPage />} />
+
+            {/* default값 설정 -> Navigate 기능을 통해 메인 페이지로 이동 */}
+            <Route path='*' element={<Navigate replace to='/' />} />
+          </>
+        ) : (
+          // 아니라면 해당 Route
+          <>
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/signup' element={<SignupPage />} />
+            <Route path='*' element={<LoginPage />} />
+          </>
+        )}
+
       </Routes>
 
       {/* 하나하나 코드를 짜는 것이 아닌, 컴포넌트로 만들 예정 
