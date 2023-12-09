@@ -28,8 +28,6 @@ export default function Router({ isAuthenticated }: RouteProps) {
             <Route path='/posts/new' element={<PostNew />} />
             <Route path='/posts/edit/:id' element={<PostEdit />} />
             <Route path='/profile' element={<ProfilePage />} />
-            <Route path='/login' element={<LoginPage />} />
-            <Route path='/signup' element={<SignupPage />} />
 
             {/* default값 설정 -> Navigate 기능을 통해 메인 페이지로 이동 */}
             <Route path='*' element={<Navigate replace to='/' />} />
