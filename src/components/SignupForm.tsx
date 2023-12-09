@@ -71,7 +71,6 @@ export default function SignupForm() {
                 setError("");
             }
         }
-
     };
 
     return (
