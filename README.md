@@ -2,7 +2,7 @@
 <img
   src="https://render.gitanimals.org/farms/Shye-Seo"
   width="1000"
-  height="200"
+  height="300"
 />
 </a>
 
